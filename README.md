@@ -7,12 +7,13 @@ My implementation:
 * has only a minimum configuration
 * includes test automation
 
+Unless stated otherwise, all of the examples below were tested on Java and Tomcat 8.
+
 ## [Simple Web App](https://github.com/zezutom/JEE-Series/tree/master/SimpleWebJSP)
 Remake of [Introduction to Developing Web Apps](https://netbeans.org/kb/docs/web/quickstart-webapps.html)
 
 Highlights:
 * in sync with the original example showcases the use of JSP and JavaBeans
-* runs on Tomcat (JEE 7 requires Tomcat 8)
 * integration tests via [HtmlUnit](http://htmlunit.sourceforge.net)
 
 ## [Struts Showcase](https://github.com/zezutom/JEE-Series/tree/master/SimpleWebStruts)
@@ -22,5 +23,4 @@ Highlights:
 * uses the latest features of [Struts 2.x](http://struts.apache.org)
 * almost no configuration thanks to the [Convention Plugin](https://struts.apache.org/docs/convention-plugin.html)
 * validations are handled via annotations rather than programatically
-* form post using Struts tags 
-* runs on Tomcat 8
+* form post using Struts tags
