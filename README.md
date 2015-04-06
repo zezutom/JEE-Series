@@ -7,7 +7,7 @@ My implementation:
 * has only a minimum configuration
 * includes test automation
 
-Unless stated otherwise, all of the examples below were tested on Java and Tomcat 8.
+Unless stated otherwise, all of the examples below are powered by Maven and were tested on Java 8 and Tomcat 8.
 
 ## [Simple Web App](https://github.com/zezutom/JEE-Series/tree/master/SimpleWebJSP)
 Remake of [Introduction to Developing Web Apps](https://netbeans.org/kb/docs/web/quickstart-webapps.html)
