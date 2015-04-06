@@ -16,7 +16,7 @@ Highlights:
 * integration tests via [HtmlUnit](http://htmlunit.sourceforge.net)
 
 ## [Struts Showcase](https://github.com/zezutom/JEE-Series/tree/master/SimpleWebStruts)
-Inspired by [Introduction to the Struts Framework](https://netbeans.org/kb/docs/web/quickstart-webapps-struts.html)
+Inspired by [Introduction to the Struts Web Framework](https://netbeans.org/kb/docs/web/quickstart-webapps-struts.html)
 
 Highlights:
 * uses the latest features of Struts 2.x
