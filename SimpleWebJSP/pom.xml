@@ -7,7 +7,7 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
 
-    <name>SimpleWebJSP</name>
+    <name>simple-web-jsp</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -42,7 +42,7 @@
     </dependencies>
 
     <build>
-        <finalName>SimpleWebJSP</finalName>        
+        <finalName>simple-web-jsp</finalName>        
     </build>
 
     <profiles>
