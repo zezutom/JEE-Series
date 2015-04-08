@@ -2,13 +2,13 @@ package org.zezutom.blog.series.jee.webjsp;
 
 public class NameHandler {
    
-    private String name;
+    private String yourName;
 
-    public String getName() {
-        return name;
+    public String getYourName() {
+        return yourName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setYourName(String yourName) {
+        this.yourName = yourName;
     }        
 }

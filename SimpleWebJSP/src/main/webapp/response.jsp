@@ -9,8 +9,8 @@
         <jsp:useBean id="nameHandler" 
                      scope="session" 
                      class="org.zezutom.blog.series.jee.webjsp.NameHandler" />
-        <jsp:setProperty name="nameHandler" property="name" />        
-        <h1>Hello <jsp:getProperty name="nameHandler" property="name" />!</h1>
+        <jsp:setProperty name="nameHandler" property="yourName" />        
+        <h1>Hello <jsp:getProperty name="nameHandler" property="yourName" />!</h1>
         <a href="index.jsp">Reset</a>
     </body>
 </html>

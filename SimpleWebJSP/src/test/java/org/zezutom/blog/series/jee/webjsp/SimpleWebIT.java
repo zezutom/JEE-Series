@@ -40,7 +40,7 @@ public class SimpleWebIT {
         HtmlForm form = page.getFormByName("SubmitYourName");
 
         // Fill in your name
-        HtmlTextInput textField = form.getInputByName("name");
+        HtmlTextInput textField = form.getInputByName("yourName");
         textField.setValueAttribute("Test Name");
 
         // Submit the form and assert the response
@@ -49,13 +49,13 @@ public class SimpleWebIT {
         WebResponse response = button.click().getWebResponse();
         String responseUrl = response.getWebRequest().getUrl().toString();
 
-        assertEquals((indexUrl + "/response.jsp?name=Test+Name"), responseUrl);
+        assertEquals((indexUrl + "/response.jsp?yourName=Test+Name"), responseUrl);
     }
 
     @Test
     public void the_submitted_name_is_displayed() throws IOException {
         final String testName = "MyName";
-        HtmlPage page = webClient.getPage(indexUrl + "/response.jsp?name=" + testName);
+        HtmlPage page = webClient.getPage(indexUrl + "/response.jsp?yourName=" + testName);
         assertTrue(page.asXml().contains("Hello " + testName + "!"));
     }
 }

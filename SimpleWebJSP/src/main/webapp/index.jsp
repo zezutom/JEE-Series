@@ -8,7 +8,7 @@
     <body>
         <h1>Entry Form</h1>               
         <form name="SubmitYourName" action="response.jsp">
-             Enter your name:<input type="text" name="name">
+             Enter your name:<input type="text" name="yourName">
             <input type="submit" value="OK">
         </form>
     </body>
