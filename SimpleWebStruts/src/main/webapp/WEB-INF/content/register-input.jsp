@@ -10,9 +10,9 @@
     <body>
         <h1>Registration Form</h1>
         <s:form action="register" method="post" validate="true">
-            <s:textfield label="Username" name="name" />
-            <s:textfield label="Email" name="email" />
-            <s:password label="Password" name="password" />
+            <s:textfield label="Username" name="user.name" />
+            <s:textfield label="Email" name="user.email" />
+            <s:password label="Password" name="user.password" />
             <s:submit />
         </s:form>
     </body>
