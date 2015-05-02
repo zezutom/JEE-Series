@@ -5,6 +5,7 @@ My implementation:
 * doesn't dependend on any IDE
 * runs on Maven
 * has only a minimum configuration
+* pays attention to detail in order to get closer to real-life projects
 * includes test automation
 
 Unless stated otherwise, all of the examples below have been tested on Java 8.
