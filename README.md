@@ -15,3 +15,7 @@ Unless stated otherwise, all of the examples below have been tested on Java 8.
 
 ### [Struts Showcase](https://github.com/zezutom/JEE-Series/tree/master/SimpleWebStruts)
 * [Struts 2.x](http://struts.apache.org), [Convention Plugin](https://struts.apache.org/docs/convention-plugin.html)
+
+### [JavaServer Faces: "Guess a Number" Game](https://github.com/zezutom/JEE-Series/tree/master/GuessNumberJSF)
+* work in progress
+
