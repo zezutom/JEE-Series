@@ -10,9 +10,12 @@ import static org.junit.Assert.*;
 public class RangeTest {
         
     @Test
-    public void range_within_boundaries() {
+    public void range_within_boundaries() {       
+        final RangeGenerator generator = 
+                new RangeGenerator(new DefaultRandomizer());
+        
         for (int i = 0; i < 10000; i++)
-            verify(new Range(new DefaultNumberGenerator()));        
+            verify(generator.generate());        
     }
     
     private void verify(Range range) {

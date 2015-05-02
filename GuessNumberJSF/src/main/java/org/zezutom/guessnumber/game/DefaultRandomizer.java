@@ -6,10 +6,10 @@ import java.util.Random;
  *
  * @author tom
  */
-public class DefaultNumberGenerator implements NumberGenerator {
+public class DefaultRandomizer implements Randomizer {
 
     @Override
-    public int random(int from, int to) {
+    public int randomize(int from, int to) {
         return new Random().nextInt(to - from + 1) + from;
     }    
     

@@ -90,9 +90,9 @@ public class GameTest {
         return new Game(getRange(from, to), getGenerator(answer));
     }
     
-    private NumberGenerator getGenerator(int answer) {
-        NumberGenerator generator = mock(NumberGenerator.class);
-        when(generator.random(anyInt(), anyInt())).thenReturn(answer);    
+    private Randomizer getGenerator(int answer) {
+        Randomizer generator = mock(Randomizer.class);
+        when(generator.randomize(anyInt(), anyInt())).thenReturn(answer);    
         return generator;
     }
     

@@ -19,9 +19,9 @@ public class Game {
         BINGO, TOO_LOW, TOO_HIGH, GAME_OVER;
     }
 
-    public Game(Range range, NumberGenerator generator) {
+    public Game(Range range, Randomizer randomizer) {
         this.range = range;
-        answer = generator.random(range.getMin(), range.getMax());        
+        answer = randomizer.randomize(range.getMin(), range.getMax());        
         maxAttempts = (int) (Math.log(range.getMax() - range.getMin()) / Math.log(2)) + 1;
     }
     

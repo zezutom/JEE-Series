@@ -31,11 +31,12 @@ public class PlayerTest {
     
     @Test
     public void play_for_real() {
-        
+                
         // a set of real games
         for (int i = 0; i < 10; i++) {
-            final NumberGenerator generator = new DefaultNumberGenerator();
-            final Game game = new Game(new Range(generator), generator);            
+            final Randomizer randomizer = new DefaultRandomizer();
+            final RangeGenerator generator = new RangeGenerator(randomizer);
+            final Game game = new Game(generator.generate(), randomizer);            
             logger.info(game.toString());
             
             // a series of attempts to solve the given game            

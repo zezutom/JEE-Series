@@ -5,7 +5,7 @@ package org.zezutom.guessnumber.game;
  * 
  * @author tom
  */
-public interface NumberGenerator {
+public interface Randomizer {
     
     /**
      * Generates a random number in a given interval, inclusive 
@@ -14,5 +14,5 @@ public interface NumberGenerator {
      * @param to
      * @return x, where: from <= x <= to
      */
-    int random(int from, int to);
+    int randomize(int from, int to);
 }

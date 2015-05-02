@@ -5,10 +5,10 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
-import org.zezutom.guessnumber.game.DefaultNumberGenerator;
+import org.zezutom.guessnumber.game.DefaultRandomizer;
 import org.zezutom.guessnumber.game.Game;
-import org.zezutom.guessnumber.game.NumberGenerator;
-import org.zezutom.guessnumber.game.Range;
+import org.zezutom.guessnumber.game.Randomizer;
+import org.zezutom.guessnumber.game.RangeGenerator;
 
 /**
  *
@@ -25,8 +25,9 @@ public class UserBean implements Serializable {
     private Integer attemptsLeft;
     
     public UserBean() {
-        final NumberGenerator generator = new DefaultNumberGenerator();
-        game = new Game(new Range(generator), generator);
+        final Randomizer randomizer = new DefaultRandomizer();
+        final RangeGenerator generator = new RangeGenerator(randomizer);
+        game = new Game(generator.generate(), randomizer);
         attemptsLeft = game.getMaxAttempts();
     }
     

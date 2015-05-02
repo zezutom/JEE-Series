@@ -19,9 +19,9 @@ public class Range {
     
     private final int max;
     
-    public Range(NumberGenerator generator) {
-        max = generator.random(MIN + MIN_GAP, MAX);
-        min = generator.random(MIN, max - MIN_GAP);
+    public Range(int max) {
+        this.min = 0;
+        this.max = max;
     }
 
     /**
