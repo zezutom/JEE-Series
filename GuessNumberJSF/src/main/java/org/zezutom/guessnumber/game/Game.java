@@ -1,4 +1,4 @@
-package org.zezutom.guessnumber;
+package org.zezutom.guessnumber.game;
 
 /**
  * Guess a number "I'm thinking of" in a given range.
@@ -32,13 +32,13 @@ public class Game {
     public int getMaxAttempts() {
         return maxAttempts;
     }
-
+    
     public Range getRange() {
         return range;
     }
         
     public Response guess(int guess) {
-        if (attempts++ > maxAttempts) 
+        if (attempts++ >= maxAttempts) 
             return Response.GAME_OVER;        
         else if (guess == answer) 
             return Response.BINGO;

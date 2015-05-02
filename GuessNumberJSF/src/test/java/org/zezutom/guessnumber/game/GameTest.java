@@ -1,4 +1,4 @@
- package org.zezutom.guessnumber;
+ package org.zezutom.guessnumber.game;
 
 import org.junit.Test;
  
@@ -39,7 +39,7 @@ public class GameTest {
         Game game = getGame(0, 10, 5);
         
         // let's waste time and effort by applying a linear search
-        for (int i = 0; i <= 4; i++)
+        for (int i = 0; i < 4; i++)
             assertEquals(Game.Response.TOO_LOW, game.guess(i));
                 
         // now we arrived at the correct answer, but it's too late

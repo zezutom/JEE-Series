@@ -1,4 +1,4 @@
-package org.zezutom.guessnumber;
+package org.zezutom.guessnumber.game;
 
 /**
  * A virtual player based on Divide and Conquer algorithm.

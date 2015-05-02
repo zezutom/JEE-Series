@@ -1,4 +1,4 @@
-package org.zezutom.guessnumber;
+package org.zezutom.guessnumber.game;
 
 /**
  * Generates a random number within given boundaries.
