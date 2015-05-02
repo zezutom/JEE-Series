@@ -7,7 +7,7 @@ My implementation:
 * has only a minimum configuration
 * includes test automation
 
-Unless stated otherwise, all of the examples below are powered by Maven and were tested on Java 8.
+Unless stated otherwise, all of the examples below have been tested on Java 8.
 
 ### [Simple Web App](https://github.com/zezutom/JEE-Series/tree/master/SimpleWebJSP)
 * JSP, JavaBeans, [HtmlUnit](http://htmlunit.sourceforge.net)
