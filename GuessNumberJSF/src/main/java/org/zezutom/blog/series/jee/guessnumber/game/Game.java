@@ -1,4 +1,4 @@
-package org.zezutom.guessnumber.game;
+package org.zezutom.blog.series.jee.guessnumber.game;
 
 /**
  * Guess a number "I'm thinking of" in a given range.

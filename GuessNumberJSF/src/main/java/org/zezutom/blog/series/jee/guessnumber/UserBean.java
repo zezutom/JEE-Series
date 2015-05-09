@@ -1,14 +1,14 @@
-package org.zezutom.guessnumber;
+package org.zezutom.blog.series.jee.guessnumber;
 
 import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
-import org.zezutom.guessnumber.game.DefaultRandomizer;
-import org.zezutom.guessnumber.game.Game;
-import org.zezutom.guessnumber.game.Randomizer;
-import org.zezutom.guessnumber.game.RangeGenerator;
+import org.zezutom.blog.series.jee.guessnumber.game.DefaultRandomizer;
+import org.zezutom.blog.series.jee.guessnumber.game.Game;
+import org.zezutom.blog.series.jee.guessnumber.game.Randomizer;
+import org.zezutom.blog.series.jee.guessnumber.game.RangeGenerator;
 
 /**
  *

@@ -1,5 +1,12 @@
-package org.zezutom.guessnumber.game;
+package org.zezutom.blog.series.jee.guessnumber.game;
 
+import org.zezutom.blog.series.jee.guessnumber.game.Range;
+import org.zezutom.blog.series.jee.guessnumber.game.Randomizer;
+import org.zezutom.blog.series.jee.guessnumber.game.Game;
+import org.zezutom.blog.series.jee.guessnumber.game.Score;
+import org.zezutom.blog.series.jee.guessnumber.game.RangeGenerator;
+import org.zezutom.blog.series.jee.guessnumber.game.DefaultRandomizer;
+import org.zezutom.blog.series.jee.guessnumber.game.Player;
 import java.util.logging.Logger;
 import org.junit.Test;
 

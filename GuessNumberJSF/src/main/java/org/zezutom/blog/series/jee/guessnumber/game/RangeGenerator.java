@@ -1,4 +1,4 @@
-package org.zezutom.guessnumber.game;
+package org.zezutom.blog.series.jee.guessnumber.game;
 
 /**
  * A helper class - pseudo random selection from predefined max range values.
