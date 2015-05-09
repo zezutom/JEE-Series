@@ -6,5 +6,6 @@ Inspired by [Introduction to JavaServer Faces 2.x](https://netbeans.org/kb/docs/
 Highlights:
 * JSF 2.2 + Glassfish 4.1
 * AJAX, all happens on the same page
+* a virtual player to demo a binary search algorithm
 * various difficulty levels and fun to play with
 
