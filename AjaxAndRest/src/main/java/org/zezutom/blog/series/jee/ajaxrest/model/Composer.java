@@ -23,17 +23,17 @@ public class Composer {
     @XmlElement(name = "lname")
     private String lastName;
 
-    private Category category;
+    private Genre genre;
 
     public Composer() {
         this.id = UUID.randomUUID().toString();
     }
         
-    public Composer(String firstName, String lastName, Category category) {
+    public Composer(String firstName, String lastName, Genre category) {
         this();
         this.firstName = firstName;
         this.lastName = lastName;
-        this.category = category;
+        this.genre = category;
     }
 
     public String getId() {
@@ -48,8 +48,8 @@ public class Composer {
         return lastName;
     }
 
-    public Category getCategory() {
-        return category;
+    public Genre getGenre() {
+        return genre;
     }
     
     @Override

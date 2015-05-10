@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html ng-app="ComposerTributeApp">
+    <head>
+        <title>Composer Tribute</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="css/lib/bootstrap.min.css" rel="stylesheet" />
+        <link href="css/app.css" rel="stylesheet" />
+    </head>
+    <body class="container">
+        <h1>Famous Composers</h1>
+        <div ng-controller="ComposerListController" class="row col-md-12">
+            <ul class="row col-md-12 composers">
+                <li ng-repeat="composer in composers" class="row col-md-12">
+                    <div>
+                        <h3 class="name">{{composer.fname}} {{composer.lname}}</h3>
+                        <span class="genre">{{composer.genre}}</span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <script src="js/lib/angular.min.js" type="text/javascript"></script>
+        <script src="js/app.js" type="text/javascript"></script>
+    </body>
+</html>

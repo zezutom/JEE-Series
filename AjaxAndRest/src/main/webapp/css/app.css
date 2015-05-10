@@ -1,0 +1,11 @@
+.composers {
+    list-style-type: none;
+}
+
+ul {
+    margin-top: 15px;
+}
+
+li {
+    border-top:1px solid #ccc;
+}

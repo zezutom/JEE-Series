@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 import javax.ejb.Stateless;
-import org.zezutom.blog.series.jee.ajaxrest.model.Category;
+import org.zezutom.blog.series.jee.ajaxrest.model.Genre;
 
 /**
  *
@@ -19,62 +19,62 @@ public class ComposerRepository {
 
     public ComposerRepository() {
         for (Composer composer : new Composer[]{
-            create("Johann Sebastian", "Bach", Category.BAROQUE),
-            create("Arcangelo", "Corelli", Category.BAROQUE),
-            create("George Frideric", "Handel", Category.BAROQUE),
-            create("Henry", "Purcell", Category.BAROQUE),
-            create("Jean-Philippe", "Rameau", Category.BAROQUE),
-            create("Domenico", "Scarlatti", Category.BAROQUE),
-            create("Antonio", "Vivaldi", Category.BAROQUE),
-            create("Ludwig van", "Beethoven", Category.CLASSICAL),
-            create("Johannes", "Brahms", Category.CLASSICAL),
-            create("Francesco", "Cavalli", Category.CLASSICAL),
-            create("Fryderyk Franciszek", "Chopin", Category.CLASSICAL),
-            create("Antonin", "Dvorak", Category.CLASSICAL),
-            create("Franz Joseph", "Haydn", Category.CLASSICAL),
-            create("Gustav", "Mahler", Category.CLASSICAL),
-            create("Wolfgang Amadeus", "Mozart", Category.CLASSICAL),
-            create("Johann", "Pachelbel", Category.CLASSICAL),
-            create("Gioachino", "Rossini", Category.CLASSICAL),
-            create("Dmitry", "Shostakovich", Category.CLASSICAL),
-            create("Richard", "Wagner", Category.CLASSICAL),
-            create("Louis-Hector", "Berlioz", Category.ROMANTIC),
-            create("Georges", "Bizet", Category.ROMANTIC),
-            create("Cesar", "Cui", Category.ROMANTIC),
-            create("Claude", "Debussy", Category.ROMANTIC),
-            create("Edward", "Elgar", Category.ROMANTIC),
-            create("Gabriel", "Faure", Category.ROMANTIC),
-            create("Cesar", "Franck", Category.ROMANTIC),
-            create("Edvard", "Grieg", Category.ROMANTIC),
-            create("Nikolay", "Rimsky-Korsakov", Category.ROMANTIC),
-            create("Franz Joseph", "Liszt", Category.ROMANTIC),
-            create("Felix", "Mendelssohn", Category.ROMANTIC),
-            create("Giacomo", "Puccini", Category.ROMANTIC),
-            create("Sergei", "Rachmaninoff", Category.ROMANTIC),
-            create("Camille", "Saint-Saens", Category.ROMANTIC),
-            create("Franz", "Schubert", Category.ROMANTIC),
-            create("Robert", "Schumann", Category.ROMANTIC),
-            create("Jean", "Sibelius", Category.ROMANTIC),
-            create("Bedrich", "Smetana", Category.ROMANTIC),
-            create("Richard", "Strauss", Category.ROMANTIC),
-            create("Pyotr Il'yich", "Tchaikovsky", Category.ROMANTIC),
-            create("Guiseppe", "Verdi", Category.ROMANTIC),
-            create("Bela", "Bartok", Category.POST_ROMANTIC),
-            create("Leonard", "Bernstein", Category.POST_ROMANTIC),
-            create("Benjamin", "Britten", Category.POST_ROMANTIC),
-            create("John", "Cage", Category.POST_ROMANTIC),
-            create("Aaron", "Copland", Category.POST_ROMANTIC),
-            create("George", "Gershwin", Category.POST_ROMANTIC),
-            create("Sergey", "Prokofiev", Category.POST_ROMANTIC),
-            create("Maurice", "Ravel", Category.POST_ROMANTIC),
-            create("Igor", "Stravinsky", Category.POST_ROMANTIC),
-            create("Carl", "Orff", Category.POST_ROMANTIC)
+            create("Johann Sebastian", "Bach", Genre.BAROQUE),
+            create("Arcangelo", "Corelli", Genre.BAROQUE),
+            create("George Frideric", "Handel", Genre.BAROQUE),
+            create("Henry", "Purcell", Genre.BAROQUE),
+            create("Jean-Philippe", "Rameau", Genre.BAROQUE),
+            create("Domenico", "Scarlatti", Genre.BAROQUE),
+            create("Antonio", "Vivaldi", Genre.BAROQUE),
+            create("Ludwig van", "Beethoven", Genre.CLASSICAL),
+            create("Johannes", "Brahms", Genre.CLASSICAL),
+            create("Francesco", "Cavalli", Genre.CLASSICAL),
+            create("Fryderyk Franciszek", "Chopin", Genre.CLASSICAL),
+            create("Antonin", "Dvorak", Genre.CLASSICAL),
+            create("Franz Joseph", "Haydn", Genre.CLASSICAL),
+            create("Gustav", "Mahler", Genre.CLASSICAL),
+            create("Wolfgang Amadeus", "Mozart", Genre.CLASSICAL),
+            create("Johann", "Pachelbel", Genre.CLASSICAL),
+            create("Gioachino", "Rossini", Genre.CLASSICAL),
+            create("Dmitry", "Shostakovich", Genre.CLASSICAL),
+            create("Richard", "Wagner", Genre.CLASSICAL),
+            create("Louis-Hector", "Berlioz", Genre.ROMANTIC),
+            create("Georges", "Bizet", Genre.ROMANTIC),
+            create("Cesar", "Cui", Genre.ROMANTIC),
+            create("Claude", "Debussy", Genre.ROMANTIC),
+            create("Edward", "Elgar", Genre.ROMANTIC),
+            create("Gabriel", "Faure", Genre.ROMANTIC),
+            create("Cesar", "Franck", Genre.ROMANTIC),
+            create("Edvard", "Grieg", Genre.ROMANTIC),
+            create("Nikolay", "Rimsky-Korsakov", Genre.ROMANTIC),
+            create("Franz Joseph", "Liszt", Genre.ROMANTIC),
+            create("Felix", "Mendelssohn", Genre.ROMANTIC),
+            create("Giacomo", "Puccini", Genre.ROMANTIC),
+            create("Sergei", "Rachmaninoff", Genre.ROMANTIC),
+            create("Camille", "Saint-Saens", Genre.ROMANTIC),
+            create("Franz", "Schubert", Genre.ROMANTIC),
+            create("Robert", "Schumann", Genre.ROMANTIC),
+            create("Jean", "Sibelius", Genre.ROMANTIC),
+            create("Bedrich", "Smetana", Genre.ROMANTIC),
+            create("Richard", "Strauss", Genre.ROMANTIC),
+            create("Pyotr Il'yich", "Tchaikovsky", Genre.ROMANTIC),
+            create("Guiseppe", "Verdi", Genre.ROMANTIC),
+            create("Bela", "Bartok", Genre.POST_ROMANTIC),
+            create("Leonard", "Bernstein", Genre.POST_ROMANTIC),
+            create("Benjamin", "Britten", Genre.POST_ROMANTIC),
+            create("John", "Cage", Genre.POST_ROMANTIC),
+            create("Aaron", "Copland", Genre.POST_ROMANTIC),
+            create("George", "Gershwin", Genre.POST_ROMANTIC),
+            create("Sergey", "Prokofiev", Genre.POST_ROMANTIC),
+            create("Maurice", "Ravel", Genre.POST_ROMANTIC),
+            create("Igor", "Stravinsky", Genre.POST_ROMANTIC),
+            create("Carl", "Orff", Genre.POST_ROMANTIC)
         }) {
             composers.put(composer.getId(), composer);
         }
     }
 
-    private Composer create(String firstName, String lastName, Category category) {
+    private Composer create(String firstName, String lastName, Genre category) {
         return new Composer(firstName, lastName, category);
     }
     
