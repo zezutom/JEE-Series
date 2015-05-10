@@ -1,10 +1,9 @@
 package org.zezutom.blog.series.jee.ajaxrest.service;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import org.zezutom.blog.series.jee.ajaxrest.model.Composer;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 import javax.ejb.Stateless;
 import org.zezutom.blog.series.jee.ajaxrest.model.Genre;
@@ -18,7 +17,7 @@ public class ComposerRepository {
 
     public static final int PAGE_SIZE = 5;
     
-    private final Map<String, Composer> composers = new HashMap<>();
+    private final List<Composer> composers = new ArrayList<>();
 
     public ComposerRepository() {
         for (Composer composer : new Composer[]{
@@ -215,7 +214,7 @@ public class ComposerRepository {
                     "http://upload.wikimedia.org/wikipedia/commons/e/e8/Carl_Orff.jpg",
                     "Carmina Burana", "Fortune, Empress of the World: I. O Fortuna")
         }) {
-            composers.put(composer.getId(), composer);
+            composers.add(composer);
         }
     }
 
@@ -240,7 +239,7 @@ public class ComposerRepository {
         if (start < 0 || finish <= 0 || finish >= composers.size()) 
             return Collections.EMPTY_LIST;        
         
-        return composers.values()
+        return composers
                 .stream()                                
                 .sorted((e1, e2) -> e1.getLastName().compareTo(e2.getLastName()))
                 .collect(Collectors.toList())

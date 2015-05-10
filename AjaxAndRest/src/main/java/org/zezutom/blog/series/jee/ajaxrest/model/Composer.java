@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.UUID;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -17,8 +16,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlRootElement
 public class Composer {
-
-    private final String id;
     
     @XmlElement(name = "fname")
     private String firstName;
@@ -36,14 +33,6 @@ public class Composer {
     
     private List<String> masterpieces;
     
-    public Composer() {
-        this.id = UUID.randomUUID().toString();
-    }
-        
-    public String getId() {
-        return id;
-    }
-
     public String getFirstName() {
         return firstName;
     }
@@ -74,8 +63,11 @@ public class Composer {
 
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 71 * hash + Objects.hashCode(this.id);
+        int hash = 3;
+        hash = 89 * hash + Objects.hashCode(this.firstName);
+        hash = 89 * hash + Objects.hashCode(this.lastName);
+        hash = 89 * hash + Objects.hashCode(this.born);
+        hash = 89 * hash + Objects.hashCode(this.died);
         return hash;
     }
 
@@ -88,10 +80,21 @@ public class Composer {
             return false;
         }
         final Composer other = (Composer) obj;
-        
-        return Objects.equals(this.id, other.id);
-    }       
-    
+        if (!Objects.equals(this.firstName, other.firstName)) {
+            return false;
+        }
+        if (!Objects.equals(this.lastName, other.lastName)) {
+            return false;
+        }
+        if (!Objects.equals(this.born, other.born)) {
+            return false;
+        }
+        if (!Objects.equals(this.died, other.died)) {
+            return false;
+        }
+        return true;
+    }
+
     public static class Builder {
     
         private final Composer composer = new Composer();
