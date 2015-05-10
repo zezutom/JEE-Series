@@ -5,7 +5,7 @@ Inspired by [Introduction to Ajax for Java Web Applications](https://netbeans.or
 * RESTful Web Services (JAX-RS)
 * Clear separation of concerns: web, service and data layer
 * Feature-rich frontend: AngularJS, Bootstrap, jQuery, AJAX
-* Advanced data management: data on demand, custom sorting and filtering
+* Advanced data management: [data on demand](http://binarymuse.github.io/ngInfiniteScroll/), custom sorting and filtering
 * Elegant backend implementation, Java 8 APIs
 * Tested on Glassfish 4.1
 
