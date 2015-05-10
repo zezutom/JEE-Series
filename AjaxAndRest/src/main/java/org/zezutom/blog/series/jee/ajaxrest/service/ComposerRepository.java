@@ -1,5 +1,6 @@
 package org.zezutom.blog.series.jee.ajaxrest.service;
 
+import java.util.Collections;
 import org.zezutom.blog.series.jee.ajaxrest.model.Composer;
 import java.util.HashMap;
 import java.util.List;
@@ -15,6 +16,8 @@ import org.zezutom.blog.series.jee.ajaxrest.model.Genre;
 @Stateless
 public class ComposerRepository {
 
+    public static final int PAGE_SIZE = 5;
+    
     private final Map<String, Composer> composers = new HashMap<>();
 
     public ComposerRepository() {
@@ -230,10 +233,17 @@ public class ComposerRepository {
                 .build();
     }
 
-    public List<Composer> findAll() {
+    public List<Composer> findAll(int page) {
+        final int start = page * PAGE_SIZE;
+        final int finish = start + PAGE_SIZE;
+        
+        if (start < 0 || finish <= 0 || finish >= composers.size()) 
+            return Collections.EMPTY_LIST;        
+        
         return composers.values()
-                .stream()
+                .stream()                                
                 .sorted((e1, e2) -> e1.getLastName().compareTo(e2.getLastName()))
-                .collect(Collectors.toList());
+                .collect(Collectors.toList())
+                .subList(start, finish);
     }
 }

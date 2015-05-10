@@ -12,10 +12,12 @@ import javax.inject.Inject;
 @Stateless
 public class ComposerService {
     
+    public static final int DEFAULT_PAGE = 0;
+    
     @Inject
     private ComposerRepository repository;
     
-    public List<Composer> getComposers() {
-        return repository.findAll();
+    public List<Composer> getComposers(Integer page) {
+        return repository.findAll(page == null ? DEFAULT_PAGE : page);
     }
 }

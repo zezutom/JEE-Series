@@ -8,6 +8,7 @@ import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
@@ -20,12 +21,13 @@ import javax.ws.rs.core.MediaType;
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class ComposerResource {
-    
+        
     @Inject
     private ComposerService service;
     
     @GET
-    public List<Composer> composers() {
-        return service.getComposers();
+    @Path("{page}")
+    public List<Composer> composers(@PathParam("page") Integer page) {
+        return service.getComposers(page);
     }
 }
