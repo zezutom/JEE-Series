@@ -20,4 +20,4 @@ Unless stated otherwise, all of the examples below have been tested on Java 8.
 * JSF 2.2 + Glassfish 4.1, AJAX, a virtual player using binary search algorithm
 
 ### [REST API, AJAX and AngularJS](https://github.com/zezutom/JEE-Series/tree/master/AjaxAndRest)
-* work in progress - RESTful backend, SoC pattern, CDI, Glassfish and an awesome JS client
+* JAX-RS, AngularJS + Bootstrap, AJAX + data on demand, Java 8, Glassfish 4.1
