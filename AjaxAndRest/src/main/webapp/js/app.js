@@ -8,3 +8,11 @@ ComposerTributeApp.controller('ComposerListController', function($scope, $http) 
     });
 });
 
+ComposerTributeApp.filter('capitalize', function() {
+    // Credit: http://codepen.io/WinterJoey/pen/sfFaK
+    return function(input, all) {
+      return (!!input) ? input.replace(/([^\W_]+[^\s-]*) */g, 
+        function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();}) : '';
+    };
+});
+

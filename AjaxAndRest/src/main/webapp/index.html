@@ -12,9 +12,16 @@
         <div ng-controller="ComposerListController" class="row col-md-12">
             <ul class="row col-md-12 composers">
                 <li ng-repeat="composer in composers" class="row col-md-12">
+                    <img src="{{composer.thumbnail}}" alt="{{composer.lname}}" height="100" width="90">
+                    <div class="name">{{composer.fname}} {{composer.lname}}</div>
                     <div>
-                        <h3 class="name">{{composer.fname}} {{composer.lname}}</h3>
-                        <span class="genre">{{composer.genre}}</span>
+                        <span class="date">{{composer.born}} - {{composer.died}}</span>
+                        <span class="genre">{{composer.genre | capitalize}}</span>                        
+                    </div>
+                    <div class="work-list">
+                        <div ng-repeat="masterpiece in composer.masterpieces">
+                            <div>{{masterpiece}}</div>
+                        </div>
                     </div>
                 </li>
             </ul>

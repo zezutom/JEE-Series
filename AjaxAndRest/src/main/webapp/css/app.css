@@ -1,5 +1,18 @@
 .composers {
     list-style-type: none;
+    width: 500px;
+}
+
+.name {
+  font: bold 20px/1.5 Helvetica, Verdana, sans-serif;
+}
+
+.date {
+    margin-right: 40px;
+}
+
+.work-list {
+    margin-top: 5px;
 }
 
 ul {
@@ -7,5 +20,20 @@ ul {
 }
 
 li {
-    border-top:1px solid #ccc;
+    padding: 10px;
+    overflow: auto;
+}
+
+li img {
+  float: left;
+  margin: 0 15px 0 0;
+}
+
+li p {
+  font: 200 12px/1.5 Georgia, Times New Roman, serif;
+}
+
+li:hover {
+  background: #eee;
+  cursor: pointer;
 }

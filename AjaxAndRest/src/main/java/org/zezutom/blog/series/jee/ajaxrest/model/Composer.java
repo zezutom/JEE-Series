@@ -1,5 +1,8 @@
 package org.zezutom.blog.series.jee.ajaxrest.model;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -25,17 +28,18 @@ public class Composer {
 
     private Genre genre;
 
+    private String thumbnail;
+    
+    private Integer born;
+    
+    private Integer died;
+    
+    private List<String> masterpieces;
+    
     public Composer() {
         this.id = UUID.randomUUID().toString();
     }
         
-    public Composer(String firstName, String lastName, Genre category) {
-        this();
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.genre = category;
-    }
-
     public String getId() {
         return id;
     }
@@ -51,7 +55,23 @@ public class Composer {
     public Genre getGenre() {
         return genre;
     }
-    
+
+    public String getThumbnail() {
+        return thumbnail;
+    }
+
+    public void setThumbnail(String thumbnail) {
+        this.thumbnail = thumbnail;
+    }
+
+    public Integer getBorn() {
+        return born;
+    }
+
+    public Integer getDied() {
+        return died;
+    }
+
     @Override
     public int hashCode() {
         int hash = 5;
@@ -71,4 +91,54 @@ public class Composer {
         
         return Objects.equals(this.id, other.id);
     }       
+    
+    public static class Builder {
+    
+        private final Composer composer = new Composer();
+                
+        public Builder setFirstName(String firstName) {
+            composer.firstName = firstName;
+            return this;
+        }
+        
+        public Builder setLastName(String lastName) {
+            composer.lastName = lastName;
+            return this;
+        }
+        
+        public Builder setBorn(Integer born) {
+            composer.born = born;
+            return this;
+        }
+        
+        public Builder setDied(Integer died) {
+            composer.died = died;
+            return this;
+        }
+        
+        public Builder setGenre(Genre genre) {
+            composer.genre = genre;
+            return this;
+        }
+        public Builder setThumbnail(String thumbnail) {
+            composer.thumbnail = thumbnail;
+            return this;
+        }
+        
+        public Builder setMasterpieces(String... masterpieces) {
+            if (masterpieces == null || masterpieces.length == 0)
+                return this;
+                
+            if (composer.masterpieces == null)
+                composer.masterpieces = new ArrayList<>();
+            
+            composer.masterpieces.addAll(Arrays.asList(masterpieces));
+            
+            return this;
+        }
+        public Composer build() {
+            return composer;
+        }
+        
+    }
 }
