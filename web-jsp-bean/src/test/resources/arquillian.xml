@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<arquillian>
+    <extension qualifier="webdriver">
+        <property name="browser">phantomjs</property>
+    </extension>
+    <container qualifier="wildfly-remote" default="true">
+        <configuration>
+            <property name="managementPort">9990</property>
+        </configuration>
+    </container>    
+</arquillian>

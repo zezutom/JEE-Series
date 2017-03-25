@@ -1,3 +1,5 @@
 screenshots
 target
 nb-configuration.xml
+*.log
+project.properties
