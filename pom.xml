@@ -17,6 +17,9 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
+        <!-- Web integration tests -->
+        <it.browser>phantomjs</it.browser>
+        <it.port>8082</it.port>
     </properties>
     
     <!-- Web integration tests -->
@@ -68,16 +71,17 @@
             <scope>test</scope>
         </dependency>   
         <dependency>
-            <groupId>org.wildfly</groupId>
-            <artifactId>wildfly-arquillian-container-remote</artifactId>
-            <version>8.2.1.Final</version>
+            <groupId>org.jboss.arquillian.container</groupId>
+            <artifactId>arquillian-glassfish-embedded-3.1</artifactId>
+            <version>1.0.0.Final</version>
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>org.jboss.arquillian.protocol</groupId>
-            <artifactId>arquillian-protocol-servlet</artifactId>
-            <scope>test</scope>
-        </dependency>
+            <groupId>org.glassfish.main.extras</groupId>
+            <artifactId>glassfish-embedded-all</artifactId>
+            <version>4.1.1</version>
+            <scope>provided</scope>
+        </dependency>        
     </dependencies>
 
     <dependencyManagement>
@@ -128,6 +132,10 @@
                         </goals>
                     </execution>
                 </executions>
+                <!-- A workaround for https://java.net/jira/browse/GLASSFISH-20721 -->
+                <configuration>
+                    <useSystemClassLoader>false</useSystemClassLoader>
+                </configuration>
             </plugin>        
         </plugins>
     </build>

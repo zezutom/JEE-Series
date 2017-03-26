@@ -3,9 +3,12 @@
     <extension qualifier="webdriver">
         <property name="browser">${it.browser}</property>
     </extension>
-    <container qualifier="glassfish-embedded" default="true">
+    <container qualifier="glassfish" default="true">
         <configuration>
             <property name="bindHttpPort">${it.port}</property>
+            <property name="resourcesXml">
+                ${basedir}/src/test/resources/glassfish-resources.xml
+            </property>            
         </configuration>        
     </container>    
 </arquillian>

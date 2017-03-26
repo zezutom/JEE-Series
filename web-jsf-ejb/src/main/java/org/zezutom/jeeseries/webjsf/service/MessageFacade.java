@@ -8,7 +8,7 @@ import org.zezutom.jeeseries.webjsf.model.Message;
 @Stateless
 public class MessageFacade extends AbstractFacade<Message> {
 
-    @PersistenceContext(unitName = "org.zezutom_web-jsf-ejb_war_1.0PU")
+    @PersistenceContext
     private EntityManager em;
 
     @Override

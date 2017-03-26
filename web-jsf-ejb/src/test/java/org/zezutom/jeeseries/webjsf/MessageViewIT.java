@@ -33,12 +33,13 @@ public class MessageViewIT {
     @Deployment(testable = false)
     public static WebArchive createDeployment() {
         return ShrinkWrap
-                .create(WebArchive.class, "message.war")
-                .addClasses(Message.class, MessageFacade.class, 
-                        AbstractFacade.class, MessageView.class)
-                .addAsResource(new File(RESOURCES_SRC, "META-INF/persistence.xml"))
+                .create(WebArchive.class, "message.war")                
+                .addPackage(Message.class.getPackage())
+                .addPackage(MessageFacade.class.getPackage())
+                .addPackage(MessageView.class.getPackage())
+                .addAsResource("test-persistence.xml", "META-INF/persistence.xml")
                 .addAsWebResource(new File(WEBAPP_SRC, "index.xhtml"))
-                .addAsWebResource(new File(WEBAPP_SRC, "result.xhtml"))
+                .addAsWebResource(new File(WEBAPP_SRC, "result.xhtml"))                
                 .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml");
     }
     
