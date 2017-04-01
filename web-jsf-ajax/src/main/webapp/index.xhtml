@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"          
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Guess a Number</title>
+    </h:head>    
+    <h:body>
+        <ui:composition template="./template.xhtml">
+            <ui:define name="title">
+                Guess a Number
+            </ui:define>
+            <ui:define name="box">
+                <h4>Hi, my name is Duke!</h4>
+
+                <h5>
+                    I'm thinking of a number between
+                    <h:outputText styleClass="highlight" value="#{PlayerBean.min}" />    
+                    and
+                    <h:outputText styleClass="highlight" value="#{PlayerBean.max}" />.    
+                    <p></p>
+                    Can you guess it?
+                    <p></p>
+                    You have 
+                    <h:outputText id="attempts" styleClass="highlight" value="#{PlayerBean.attemptsLeft}" /> 
+                    attempts left.
+                </h5>
+
+                <h:form id="gameForm">
+                    <h:inputText id="guessedInt" size="4" maxlength="2" 
+                                 value="#{PlayerBean.guessedInt}" />
+                    <h:commandButton id="submit" value="Submit">
+                        <f:ajax execute="guessedInt" 
+                                listener="#{PlayerBean.actionGuessed}" 
+                                render="response attempts guessedNumber" />
+                    </h:commandButton>
+                    <h:commandButton id="reset" 
+                                     value="Reset" 
+                                     action="#{PlayerBean.resetGame}" 
+                                     immediate="true" />
+                    <h:outputText id="response" value="#{PlayerBean.response}" />
+                </h:form>                                  
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<arquillian>    
+    <extension qualifier="webdriver">
+        <property name="browser">${it.browser}</property>
+    </extension>
+    <container qualifier="glassfish" default="true">
+        <configuration>
+            <property name="bindHttpPort">${it.port}</property>            
+        </configuration>        
+    </container>    
+</arquillian>
