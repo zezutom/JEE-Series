@@ -8,5 +8,4 @@
     </parent>
     <artifactId>web-jsp-bean</artifactId>
     <packaging>war</packaging>
-    <name>Web JSP Bean</name>
 </project>

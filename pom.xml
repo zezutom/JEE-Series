@@ -6,17 +6,19 @@
     <artifactId>jee-series</artifactId>
     <version>1.0</version>
     <packaging>pom</packaging>
-    <name>JEE Series</name>
 
     <modules>
         <module>web-jsp-bean</module>
         <module>web-jsf-ejb</module>
+        <module>web-jsf-ajax</module>
+        <module>web-jsf-ajax-rest</module>
     </modules>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
+        <failOnMissingWebXml>false</failOnMissingWebXml>
         <!-- Web integration tests -->
         <it.browser>phantomjs</it.browser>
         <it.port>8082</it.port>
@@ -56,6 +58,12 @@
             <version>1.3</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-all</artifactId>
+            <version>1.9.5</version>
+            <scope>test</scope>
+        </dependency>        
         
         <!-- Integration tests via Arquillian -->
         <dependency>
@@ -111,14 +119,6 @@
             </testResource>
         </testResources>        
         <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-war-plugin</artifactId>
-                <version>3.0.0</version>
-                <configuration>
-                    <failOnMissingWebXml>false</failOnMissingWebXml>
-                </configuration>
-            </plugin>
             <plugin>
                 <!-- Runs the integration tests -->
                 <groupId>org.apache.maven.plugins</groupId>
