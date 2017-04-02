@@ -12,7 +12,7 @@
         <title>Hello</title>
     </head>
     <body>
-        <jsp:useBean id="nameHandler" scope="session" class="org.zezutom.jeeseries.webjsp.NameHandler" />
+        <jsp:useBean id="nameHandler" scope="session" class="org.zezutom.jeeseries.web.jsp.NameHandler" />
         <jsp:setProperty name="nameHandler" property="name" />
         <h1>Hello <jsp:getProperty name="nameHandler" property="name" />!</h1>
     </body>
