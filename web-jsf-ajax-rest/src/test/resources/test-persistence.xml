@@ -5,7 +5,7 @@
         <jta-data-source>jdbc/arquillian</jta-data-source>
         <properties>
             <property name="javax.persistence.schema-generation.database.action" value="create"/>
-            <property name="javax.persistence.sql-load-script-source" value="META-INF/data.sql"/>
+            <property name="javax.persistence.sql-load-script-source" value="META-INF/test-data.sql"/>
             <property name="eclipselink.logging.level" value="FINE"/>
         </properties>
     </persistence-unit>
