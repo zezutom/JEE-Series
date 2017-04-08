@@ -37,7 +37,7 @@ public class Composer implements Serializable {
     @Column(name = "year_of_death")
     private Integer died;
     
-    @OneToMany
+    @OneToMany(mappedBy = "composer")
     private List<Composition> compositions;    
     
     public Long getId() {
