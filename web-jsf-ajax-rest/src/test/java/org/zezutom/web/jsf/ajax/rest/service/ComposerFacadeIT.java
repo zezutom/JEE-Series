@@ -60,6 +60,21 @@ public class ComposerFacadeIT {
         assertComposer(composers.get(2), "Baroque", 1678, "Vivaldi");
     }
     
+    @Test
+    public void shouldSupportFuzzySearch() {
+        // Should find 'Vivaldi' in the last name
+        List<Composer> composers = composerFacade.search("VIV");
+        assertPageOfResults(composers, 1);
+        Assert.assertTrue(composers.contains(composerFacade.find(7L)));
+        
+        // Should find all composers falling into the classical genre category
+        composers = composerFacade.search("claSSIc");
+        assertPageOfResults(composers, 3);
+        Assert.assertTrue(composers.contains(composerFacade.find(8L)));
+        Assert.assertTrue(composers.contains(composerFacade.find(9L)));
+        Assert.assertTrue(composers.contains(composerFacade.find(10L)));
+    }
+    
     private void assertComposer(Composer composer, String genre, int born, String lastName) {
         Assert.assertNotNull(composer);        
         Assert.assertTrue(composer.getBorn() == born);
