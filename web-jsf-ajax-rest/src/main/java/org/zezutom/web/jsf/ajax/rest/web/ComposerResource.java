@@ -22,50 +22,70 @@ import org.zezutom.web.jsf.ajax.rest.service.ComposerFacade;
 public class ComposerResource {
 
     public static final int PAGE_SIZE = 10;
-    
+
     @EJB
     private ComposerFacade composerFacade;
-    
+
     @Resource
     private ManagedExecutorService executorService;
-        
+
     @GET
-    @Path("{page}")    
+    @Path("{page}")
     public void composers(
-            @Suspended AsyncResponse asyncResponse, 
+            @Suspended AsyncResponse asyncResponse,
             @PathParam("page") Integer page) {
-        
+        Runnable runnable = getAsyncResponse(
+                composerFacade.findRange(getRange(page)), 
+                asyncResponse);
+        executorService.submit(runnable);
+    }
+
+    @GET
+    @Path("{filter}/{page}")
+    public void composers(
+            @Suspended AsyncResponse asyncResponse,
+            @PathParam("filter") String filter,
+            @PathParam("page") Integer page) {
+        Runnable runnable = getAsyncResponse(
+                composerFacade.findRange(getRange(page), filter), 
+                asyncResponse);
+        executorService.submit(runnable);
+    }
+
+    private int[] getRange(Integer page) {
+        int offset = page == null ? 0 : page * PAGE_SIZE;
+        return new int[]{offset, offset + PAGE_SIZE - 1};        
+    }
+    
+    private Runnable getAsyncResponse(List<Composer> composers, AsyncResponse asyncResponse) {
         Runnable runnable = () -> {
-            int offset = page * PAGE_SIZE;
-            List<Composer> composers = composerFacade.findRange(
-                    new int[] {offset, offset + PAGE_SIZE - 1});        
             JsonArray json = composers
                     .stream()
                     .map(c -> Json.createObjectBuilder()
-                            .add("firstName", c.getFirstName())
-                            .add("lastName", c.getLastName())
-                            .add("genre", c.getGenre())
-                            .add("thumbnail", c.getThumbnail())
-                            .add("born", c.getBorn())
-                            .add("died", c.getDied())
-                            .add("compositions", c.getCompositions()
-                                    .stream()
-                                    .map(cp -> Json.createObjectBuilder()
-                                            .add("name", cp.getName()))
-                                    .collect(
-                                            Json::createArrayBuilder, 
-                                            JsonArrayBuilder::add, 
-                                            JsonArrayBuilder::add)
-                                    .build())
+                    .add("firstName", c.getFirstName())
+                    .add("lastName", c.getLastName())
+                    .add("genre", c.getGenre())
+                    .add("thumbnail", c.getThumbnail())
+                    .add("born", c.getBorn())
+                    .add("died", c.getDied())
+                    .add("compositions", c.getCompositions()
+                            .stream()
+                            .map(cp -> Json.createObjectBuilder()
+                            .add("name", cp.getName()))
+                            .collect(
+                                    Json::createArrayBuilder,
+                                    JsonArrayBuilder::add,
+                                    JsonArrayBuilder::add)
+                            .build())
                     .build())
                     .collect(
-                            Json::createArrayBuilder, 
-                            JsonArrayBuilder::add, 
+                            Json::createArrayBuilder,
+                            JsonArrayBuilder::add,
                             JsonArrayBuilder::add)
                     .build();
             Response response = Response.ok(json).build();
             asyncResponse.resume(response);
         };
-        executorService.submit(runnable);
-    }   
+        return runnable;
+    }
 }

@@ -1,5 +1,6 @@
 package org.zezutom.web.jsf.ajax.rest.service;
 
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -18,6 +19,18 @@ public class ComposerFacade extends AbstractFacade<Composer> {
 
     public ComposerFacade() {
         super(Composer.class);
+    }
+    
+    public List<Composer> findRange(int[] range, String filter) {
+        if (filter == null || filter.isEmpty())
+            return super.findRange(range);
+        else
+            return getEntityManager()
+                    .createNamedQuery(Composer.SEARCH_QUERY_NAME)
+                    .setParameter("searchText", filter)
+                    .setMaxResults(range[1] - range[0] + 1)
+                    .setFirstResult(range[0])                       
+                    .getResultList();
     }
     
 }

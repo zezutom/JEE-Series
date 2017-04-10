@@ -9,9 +9,15 @@
     </head>
     <body class="container" ng-app="ComposerTributeApp" ng-controller="ComposerListController">
         <h1>Famous Composers</h1>
+        <div class="input-group">
+            <input type="text" class="form-control" ng-model="searchText" placeholder="Search by name, genre ..">
+            <span class="input-group-btn">
+                <button class="btn btn-secondary" ng-click="applyFilter()" type="button">Search</button>
+            </span>
+        </div>
         <div infinite-scroll='nextPage()' infinite-scroll-disabled='busy' infinite-scroll-distance='1'>
             <ul class="row col-md-12 composers">
-                <li ng-repeat="composer in composers">
+                <li ng-repeat="composer in composers| filter:query">
                     <img ng-src="img/{{composer.thumbnail}}" alt="{{composer.lastName}}" height="100" width="90">
                     <div class="name">{{composer.firstName}} {{composer.lastName}}</div>
                     <div>

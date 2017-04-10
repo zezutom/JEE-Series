@@ -8,13 +8,24 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "COMPOSERS")
+@NamedQuery(name = Composer.SEARCH_QUERY_NAME, 
+        query = "select c from Composer c where "
+                + "lower(c.firstName) like concat('%', trim(lower(:searchText)), '%') or "
+                + "lower(c.lastName) like concat('%', trim(lower(:searchText)), '%') or "
+                + "lower(c.genre) like concat('%', trim(lower(:searchText)), '%') or "
+                + "lower(c.thumbnail) like concat('%', trim(lower(:searchText)), '%')")
 public class Composer implements Serializable {
 
+    public static final String SEARCH_QUERY_NAME = "searchComposers";
+    
+    public static final String SEARCH_QUERY_PARAM_NAME = "searchText";
+    
     private static final long serialVersionUID = 1L;
     
     @Id
