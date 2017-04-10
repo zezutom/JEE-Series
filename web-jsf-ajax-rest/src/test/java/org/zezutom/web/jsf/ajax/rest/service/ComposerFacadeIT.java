@@ -52,27 +52,32 @@ public class ComposerFacadeIT {
     }
     
     @Test
-    public void shouldOrderBySpecifiedFields() {
-        // Top 3 by genre and year of birth
-        List<Composer> composers = composerFacade.findAll("genre", "born").subList(0, 3);
-        assertComposer(composers.get(0), "Baroque", 1653, "Corelli");
-        assertComposer(composers.get(1), "Baroque", 1659, "Purcell");
-        assertComposer(composers.get(2), "Baroque", 1678, "Vivaldi");
+    public void shouldFindAllResults() {
+        assertFullResults(composerFacade.findAll());
     }
     
     @Test
     public void shouldSupportFuzzySearch() {
+        final int[] range = new int[] {0, 10};
         // Should find 'Vivaldi' in the last name
-        List<Composer> composers = composerFacade.search("VIV");
+        List<Composer> composers = composerFacade.findRange(range, "VIV");
         assertPageOfResults(composers, 1);
         Assert.assertTrue(composers.contains(composerFacade.find(7L)));
         
         // Should find all composers falling into the classical genre category
-        composers = composerFacade.search("claSSIc");
+        composers = composerFacade.findRange(range, "claSSIc");
         assertPageOfResults(composers, 3);
         Assert.assertTrue(composers.contains(composerFacade.find(8L)));
         Assert.assertTrue(composers.contains(composerFacade.find(9L)));
         Assert.assertTrue(composers.contains(composerFacade.find(10L)));
+    }
+
+    @Test
+    public void shouldNotFilterIfSearchTextIsInvalid() {
+        final int[] range = new int[] {0, 10};
+        assertFullResults(composerFacade.findRange(range, "  "));
+        assertFullResults(composerFacade.findRange(range, " a  "));
+        assertFullResults(composerFacade.findRange(range, null));
     }
     
     private void assertComposer(Composer composer, String genre, int born, String lastName) {
@@ -85,5 +90,10 @@ public class ComposerFacadeIT {
     private void assertPageOfResults(List<Composer> pageOfResults, int expectedSize) {
         Assert.assertNotNull(pageOfResults);
         Assert.assertTrue(pageOfResults.size() == expectedSize);
+    }
+    
+    private void assertFullResults(List<Composer> composers) {
+        Assert.assertNotNull(composers);
+        Assert.assertTrue(composers.size() == composerFacade.count());
     }
 }
