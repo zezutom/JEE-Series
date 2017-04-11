@@ -18,8 +18,8 @@ import javax.persistence.Table;
         query = "select c from Composer c where "
                 + "lower(c.firstName) like concat('%', trim(lower(:searchText)), '%') or "
                 + "lower(c.lastName) like concat('%', trim(lower(:searchText)), '%') or "
-                + "lower(c.genre) like concat('%', trim(lower(:searchText)), '%') or "
-                + "lower(c.thumbnail) like concat('%', trim(lower(:searchText)), '%')")
+                + "lower(c.genre) like concat('%', trim(lower(:searchText)), '%') "
+                + "order by c.lastName")
 public class Composer implements Serializable {
 
     public static final String SEARCH_QUERY_NAME = "searchComposers";

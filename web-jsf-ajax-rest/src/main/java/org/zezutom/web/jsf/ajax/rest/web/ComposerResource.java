@@ -1,5 +1,6 @@
 package org.zezutom.web.jsf.ajax.rest.web;
 
+import java.util.Collections;
 import java.util.List;
 import javax.annotation.Resource;
 import javax.ejb.EJB;
@@ -11,6 +12,7 @@ import javax.json.JsonArrayBuilder;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.container.AsyncResponse;
 import javax.ws.rs.container.Suspended;
 import javax.ws.rs.core.Response;
@@ -30,38 +32,46 @@ public class ComposerResource {
     private ManagedExecutorService executorService;
 
     @GET
-    @Path("{page}")
-    public void composers(
+    @Path("/list")
+    public void list(
             @Suspended AsyncResponse asyncResponse,
-            @PathParam("page") Integer page) {
+            @QueryParam("page") int page) {
+        int offset = page * PAGE_SIZE;
+        int[] range = new int[]{offset, offset + PAGE_SIZE - 1};           
         Runnable runnable = getAsyncResponse(
-                composerFacade.findRange(getRange(page)), 
+                composerFacade.findRange(range), 
                 asyncResponse);
         executorService.submit(runnable);
     }
 
     @GET
-    @Path("{filter}/{page}")
-    public void composers(
+    @Path("/filter")
+    public void filter(
             @Suspended AsyncResponse asyncResponse,
-            @PathParam("filter") String filter,
-            @PathParam("page") Integer page) {
+            @QueryParam("query") String query) {
         Runnable runnable = getAsyncResponse(
-                composerFacade.findRange(getRange(page), filter), 
+                composerFacade.findAll(query), 
                 asyncResponse);
         executorService.submit(runnable);
     }
-
-    private int[] getRange(Integer page) {
-        int offset = page == null ? 0 : page * PAGE_SIZE;
-        return new int[]{offset, offset + PAGE_SIZE - 1};        
-    }
     
+    @GET
+    @Path("{id}")
+    public void findOne(
+            @Suspended AsyncResponse asyncResponse,
+            @PathParam("id") Long id) {
+        Runnable runnable = getAsyncResponse(
+                Collections.singletonList(composerFacade.find(id)), 
+                asyncResponse);
+        executorService.submit(runnable);        
+    }
+        
     private Runnable getAsyncResponse(List<Composer> composers, AsyncResponse asyncResponse) {
         Runnable runnable = () -> {
             JsonArray json = composers
                     .stream()
                     .map(c -> Json.createObjectBuilder()
+                    .add("id", c.getId())
                     .add("firstName", c.getFirstName())
                     .add("lastName", c.getLastName())
                     .add("genre", c.getGenre())

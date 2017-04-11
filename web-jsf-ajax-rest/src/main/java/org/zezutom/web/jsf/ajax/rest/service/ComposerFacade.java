@@ -21,15 +21,13 @@ public class ComposerFacade extends AbstractFacade<Composer> {
         super(Composer.class);
     }
     
-    public List<Composer> findRange(int[] range, String filter) {
+    public List<Composer> findAll(String filter) {
         if (filter == null || filter.isEmpty())
-            return super.findRange(range);
+            return super.findAll();
         else
             return getEntityManager()
                     .createNamedQuery(Composer.SEARCH_QUERY_NAME)
                     .setParameter("searchText", filter)
-                    .setMaxResults(range[1] - range[0] + 1)
-                    .setFirstResult(range[0])                       
                     .getResultList();
     }
     
