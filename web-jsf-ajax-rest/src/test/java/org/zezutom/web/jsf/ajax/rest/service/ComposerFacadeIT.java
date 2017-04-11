@@ -57,15 +57,14 @@ public class ComposerFacadeIT {
     }
     
     @Test
-    public void shouldSupportFuzzySearch() {
-        final int[] range = new int[] {0, 10};
+    public void shouldSupportFuzzySearch() {        
         // Should find 'Vivaldi' in the last name
-        List<Composer> composers = composerFacade.findRange(range, "VIV");
+        List<Composer> composers = composerFacade.findAll("VIV");
         assertPageOfResults(composers, 1);
         Assert.assertTrue(composers.contains(composerFacade.find(7L)));
         
         // Should find all composers falling into the classical genre category
-        composers = composerFacade.findRange(range, "claSSIc");
+        composers = composerFacade.findAll("claSSIc");
         assertPageOfResults(composers, 3);
         Assert.assertTrue(composers.contains(composerFacade.find(8L)));
         Assert.assertTrue(composers.contains(composerFacade.find(9L)));
@@ -74,10 +73,9 @@ public class ComposerFacadeIT {
 
     @Test
     public void shouldNotFilterIfSearchTextIsInvalid() {
-        final int[] range = new int[] {0, 10};
-        assertFullResults(composerFacade.findRange(range, "  "));
-        assertFullResults(composerFacade.findRange(range, " a  "));
-        assertFullResults(composerFacade.findRange(range, null));
+        assertFullResults(composerFacade.findAll("  "));
+        assertFullResults(composerFacade.findAll(" a  "));
+        assertFullResults(composerFacade.findAll(null));
     }
     
     private void assertComposer(Composer composer, String genre, int born, String lastName) {
