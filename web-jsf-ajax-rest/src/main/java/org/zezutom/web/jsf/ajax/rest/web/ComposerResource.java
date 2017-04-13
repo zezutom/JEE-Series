@@ -1,7 +1,12 @@
 package org.zezutom.web.jsf.ajax.rest.web;
 
+import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
+import java.util.stream.Collectors;
 import javax.annotation.Resource;
 import javax.ejb.EJB;
 import javax.enterprise.concurrent.ManagedExecutorService;
@@ -17,6 +22,7 @@ import javax.ws.rs.container.AsyncResponse;
 import javax.ws.rs.container.Suspended;
 import javax.ws.rs.core.Response;
 import org.zezutom.web.jsf.ajax.rest.model.Composer;
+import org.zezutom.web.jsf.ajax.rest.model.OrderRule;
 import org.zezutom.web.jsf.ajax.rest.service.ComposerFacade;
 
 @Path("composers")
@@ -35,11 +41,12 @@ public class ComposerResource {
     @Path("/list")
     public void list(
             @Suspended AsyncResponse asyncResponse,
-            @QueryParam("page") int page) {
+            @QueryParam("page") int page,
+            @QueryParam("sortBy") String sortBy) {
         int offset = page * PAGE_SIZE;
         int[] range = new int[]{offset, offset + PAGE_SIZE - 1};           
         Runnable runnable = getAsyncResponse(
-                composerFacade.findRange(range), 
+                composerFacade.findRange(range, getOrderRules(sortBy)), 
                 asyncResponse);
         executorService.submit(runnable);
     }
@@ -97,5 +104,15 @@ public class ComposerResource {
             asyncResponse.resume(response);
         };
         return runnable;
+    }
+    
+    private List<OrderRule> getOrderRules(String sortBy) {
+        return Arrays.asList(sortBy.split(","))
+                .stream()
+                .map(x -> {
+                    String[] sortByDef = x.split(":");
+                    return new OrderRule(sortByDef[0], "asc".equals(sortByDef[1]));
+                }).collect(Collectors.toList());
+
     }
 }
