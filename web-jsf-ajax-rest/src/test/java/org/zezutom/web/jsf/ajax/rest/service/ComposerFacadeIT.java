@@ -1,5 +1,7 @@
 package org.zezutom.web.jsf.ajax.rest.service;
 
+import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 import javax.ejb.EJB;
 import org.jboss.arquillian.container.test.api.Deployment;
@@ -12,6 +14,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.zezutom.web.jsf.ajax.rest.model.Composer;
 import org.zezutom.web.jsf.ajax.rest.model.Composition;
+import org.zezutom.web.jsf.ajax.rest.model.OrderRule;
 
 @RunWith(Arquillian.class)
 public class ComposerFacadeIT {
@@ -58,13 +61,13 @@ public class ComposerFacadeIT {
     
     @Test
     public void shouldSupportFuzzySearch() {        
-        // Should find 'Vivaldi' in the last name
-        List<Composer> composers = composerFacade.findAll("VIV");
+        // Should find 'Vivaldi' in the last name        
+        List<Composer> composers = composerFacade.findRange(getRange(), "VIV");
         assertPageOfResults(composers, 1);
         Assert.assertTrue(composers.contains(composerFacade.find(7L)));
         
         // Should find all composers falling into the classical genre category
-        composers = composerFacade.findAll("claSSIc");
+        composers = composerFacade.findRange(getRange(), "claSSIc");
         assertPageOfResults(composers, 3);
         Assert.assertTrue(composers.contains(composerFacade.find(8L)));
         Assert.assertTrue(composers.contains(composerFacade.find(9L)));
@@ -72,19 +75,52 @@ public class ComposerFacadeIT {
     }
 
     @Test
+    public void shouldSupportFuzzySearchWithCustomSorting() {               
+        // by lastname
+        assertSortBy("LL", 
+                Arrays.asList(new OrderRule("lastName", true)), 
+                "Cavalli", "Corelli", "Purcell");
+        
+        // by lastname desc
+        assertSortBy("LL", 
+                Arrays.asList(new OrderRule("lastName", false)), 
+                "Purcell", "Corelli", "Cavalli");
+        
+        // by genre, lastname
+        assertSortBy("LL", 
+                Arrays.asList(new OrderRule("genre", true), new OrderRule("lastName", true)), 
+                "Corelli", "Purcell", "Cavalli");
+        
+        // by genre desc, lastname
+        assertSortBy("LL", 
+                Arrays.asList(new OrderRule("genre", false), new OrderRule("lastName", true)), 
+                "Cavalli", "Corelli", "Purcell");        
+        
+        // by genre desc, lastname desc
+        assertSortBy("LL", 
+                Arrays.asList(new OrderRule("genre", false), new OrderRule("lastName", false)), 
+                "Cavalli",  "Purcell", "Corelli");                
+    }
+
+    private void assertSortBy(String query, List<OrderRule> orderRules, String... lastnames) {
+        List<Composer> composers = composerFacade.findRange(getRange(), query, orderRules);
+        assertPageOfResults(composers, lastnames.length);  // Cavalli, Corelli, Purcell
+        Iterator<Composer> it = composers.iterator();
+        for (String lastname : lastnames) {
+            final Composer composer = it.next();
+            Assert.assertNotNull(composer);
+            Assert.assertTrue(lastname.equals(composer.getLastName()));            
+        }        
+    }
+    
+    @Test
     public void shouldNotFilterIfSearchTextIsInvalid() {
-        assertFullResults(composerFacade.findAll("  "));
-        assertFullResults(composerFacade.findAll(" a  "));
-        assertFullResults(composerFacade.findAll(null));
+        int[] range = getRange();
+        assertFullResults(composerFacade.findRange(range, "  "));
+        assertFullResults(composerFacade.findRange(range, " a  "));
+        assertFullResults(composerFacade.findRange(range, null));
     }
-    
-    private void assertComposer(Composer composer, String genre, int born, String lastName) {
-        Assert.assertNotNull(composer);        
-        Assert.assertTrue(composer.getBorn() == born);
-        Assert.assertEquals(genre, composer.getGenre());
-        Assert.assertEquals(lastName, composer.getLastName());
-    }
-    
+            
     private void assertPageOfResults(List<Composer> pageOfResults, int expectedSize) {
         Assert.assertNotNull(pageOfResults);
         Assert.assertTrue(pageOfResults.size() == expectedSize);
@@ -93,5 +129,9 @@ public class ComposerFacadeIT {
     private void assertFullResults(List<Composer> composers) {
         Assert.assertNotNull(composers);
         Assert.assertTrue(composers.size() == composerFacade.count());
+    }
+    
+    private int[] getRange() {
+        return new int[] {0, 10};
     }
 }

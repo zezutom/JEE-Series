@@ -8,26 +8,26 @@ ComposerTributeApp.controller('ComposerListController', function ($scope, $http)
     $scope.fullyLoaded = false;
 
     $scope.sortOptions = [
-        {name: 'Name A-Z',  expr: 'lastName:asc'},
-        {name: 'Name Z-A',  expr: 'lastName:desc'},
-        {name: 'Genre A-Z', expr: 'genre:asc,lastName:asc'},        
-        {name: 'Genre Z-A', expr: 'genre:desc,lastName:asc'}        
+        {name: 'Name A-Z', expr: 'lastName:asc'},
+        {name: 'Name Z-A', expr: 'lastName:desc'},
+        {name: 'Genre A-Z', expr: 'genre:asc,lastName:asc'},
+        {name: 'Genre Z-A', expr: 'genre:desc,lastName:asc'}
     ];
     $scope.selectedSort = $scope.sortOptions[0];
-    
-    $scope.selectSort = function() {
+
+    $scope.selectSort = function () {
         $scope.composers = [];
         $scope.page = 0;
         $scope.busy = false;
         $scope.fullyLoaded = false;
         $scope.nextPage();
     };
-    
+
     $scope.nextPage = function () {
         if ($scope.busy || $scope.fullyLoaded)
             return;
         $scope.busy = true;
-        $http.get('resources/composers/list', {
+        $http.get('resources/composers', {
             params: {
                 page: $scope.page,
                 sortBy: $scope.selectedSort.expr
@@ -46,7 +46,7 @@ ComposerTributeApp.controller('ComposerListController', function ($scope, $http)
 
     $scope.filterComposers = function (val) {
         var normalize = function (str) {
-            return (str === undefined) ? "" : str.toLowerCase().trim();
+            return (str === undefined) ? '' : str.toLowerCase().trim();
         };
         var filter = function (composer) {
             return normalize(composer.firstName + composer.lastName).indexOf(normalize(val)) >= 0;
@@ -56,21 +56,25 @@ ComposerTributeApp.controller('ComposerListController', function ($scope, $http)
             return filter;
         } else {
             $scope.busy = true;
-            return $http.get('resources/composers/filter', {
+            $scope.page = 0;
+            return $http.get('resources/composers', {
                 params: {
-                    query: val
+                    page: $scope.page,
+                    query: val,
+                    sortBy: $scope.selectedSort.expr
                 }
             }).then(function (response) {
                 $scope.busy = false;
+                $scope.fullyLoaded = true;
                 var data = response.data;
                 if (data && data.length > 0) {
-                    $scope.composers.push.apply($scope.composers, data);                
-                } else {
-                    $scope.fullyLoaded = true;
+                    $scope.composers.push.apply($scope.composers, data);
+                } else {                                        
+                    data = [];
                 }
-                return response.data.map(function (item) {
+                return data.map(function (item) {
                     return item;
-                });                
+                });
             });
         }
     };
