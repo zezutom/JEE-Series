@@ -2,10 +2,7 @@ package org.zezutom.web.jsf.ajax.rest.web;
 
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
 import java.util.stream.Collectors;
 import javax.annotation.Resource;
 import javax.ejb.EJB;
@@ -38,26 +35,15 @@ public class ComposerResource {
     private ManagedExecutorService executorService;
 
     @GET
-    @Path("/list")
-    public void list(
+    public void findRange(
             @Suspended AsyncResponse asyncResponse,
             @QueryParam("page") int page,
+            @QueryParam("query") String query,            
             @QueryParam("sortBy") String sortBy) {
         int offset = page * PAGE_SIZE;
         int[] range = new int[]{offset, offset + PAGE_SIZE - 1};           
         Runnable runnable = getAsyncResponse(
-                composerFacade.findRange(range, getOrderRules(sortBy)), 
-                asyncResponse);
-        executorService.submit(runnable);
-    }
-
-    @GET
-    @Path("/filter")
-    public void filter(
-            @Suspended AsyncResponse asyncResponse,
-            @QueryParam("query") String query) {
-        Runnable runnable = getAsyncResponse(
-                composerFacade.findAll(query), 
+                composerFacade.findRange(range, query, getOrderRules(sortBy)), 
                 asyncResponse);
         executorService.submit(runnable);
     }
