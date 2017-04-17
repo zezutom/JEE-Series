@@ -4,7 +4,7 @@ JEE 7 examples and experiments. Inspired by [Netbean's JEE Learning Trail](https
 Key features:
 * runs on Maven: IDE independent, minimalistic configuration
 * JEE7 and Java 8 contribute to clean and concise code
-* unit tests and integration tests (Arquillian)
+* unit tests (JUnit 4) and integration tests (Arquillian)
 
 The entire project can be downloaded an built at once
 ```bash
