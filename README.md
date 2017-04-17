@@ -8,7 +8,7 @@ Key features:
 
 The entire project can be downloaded an built at once
 ```bash
-git@github.com:zezutom/JEE-Series.git && mvn clean install
+git clone git@github.com:zezutom/JEE-Series.git && cd ./JEE-Series && mvn clean install
 ```
 Unless stated otherwise, all apps have been tested on Payara 4.1 (a better maintained version of Glassfish).
 
