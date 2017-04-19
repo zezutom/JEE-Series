@@ -1,4 +1,7 @@
+
 # JEE Series
+[![Build Status](https://travis-ci.org/zezutom/JEE-Series.svg?branch=master)](https://travis-ci.org/zezutom/JEE-Series)
+
 JEE 7 examples and experiments. Inspired by [Netbean's JEE Learning Trail](https://netbeans.org/kb/trails/java-ee.html).
 
 Key features:
