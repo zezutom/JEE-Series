@@ -12,7 +12,8 @@
         <module>web-jsf-ejb</module>
         <module>web-jsf-ajax</module>
         <module>web-jsf-ajax-rest</module>
-    </modules>
+    <module>eshop</module>
+  </modules>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
