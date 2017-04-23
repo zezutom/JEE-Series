@@ -5,7 +5,21 @@
       xmlns:ui="http://java.sun.com/jsf/facelets">
     <h:body>
         <ui:composition>
-            this is header
+            <div id="widgetBar">
+                <div class="headerWidget">
+                    [ language toggle ]
+                </div>
+                
+                <div class="headerWidget">
+                    [ shopping cart widget ]
+                </div>                
+            </div>
+            
+            <h:link outcome="index.xhtml">
+                <h:graphicImage id="logo" alt="E-Shop logo" name="index.xhtml" />
+            </h:link>
+            
+            <h:graphicImage id="logoText" alt="E-Shop logo text" name="index.xhtml" />
         </ui:composition>
     </h:body>
 </html>

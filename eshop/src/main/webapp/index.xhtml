@@ -2,7 +2,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-        xmlns:ui="http://java.sun.com/jsf/facelets">
+      xmlns:ui="http://java.sun.com/jsf/facelets">
     <h:head>
         <title>Your E-Shop</title>
         <h:outputStylesheet name="main.css" library="css" />
@@ -13,23 +13,47 @@
                 <ui:include src="templates/header.xhtml" />
             </ui:insert>
         </div>
-        
-        <div id="indexLeftColumn">
-            <ui:insert name="menu">
-                <ui:include src="templates/menu.xhtml" />
-            </ui:insert>
-        </div>        
-        
-        <div id="indexRightColumn">
-            right column
-        </div> 
-        
-        <div id="footer">
-            <ui:insert name="footer">
-                <ui:include src="templates/footer.xhtml" />
-            </ui:insert>
+
+        <div id="indexLeftColumnWrapper">
+            <div id="indexLeftColumn">
+                <ui:insert name="menu">
+                    <ui:include src="templates/menu.xhtml" />
+                </ui:insert>
+            </div>        
+
+            <div id="footer">
+                <ui:insert name="footer">
+                    <ui:include src="templates/footer.xhtml" />
+                </ui:insert>
+            </div>
         </div>
-        
+
+        <div id="indexRightColumn">
+            <div class="categoryBox">
+                <h:link outcome="category.xhtml">
+                    <span class="categoryLabelText">dairy</span>
+                </h:link>
+            </div>
+
+            <div class="categoryBox">
+                <h:link outcome="category.xhtml">
+                    <span class="categoryLabelText">meats</span>
+                </h:link>
+            </div>
+
+            <div class="categoryBox">
+                <h:link outcome="category.xhtml">
+                    <span class="categoryLabelText">bakery</span>
+                </h:link>
+            </div>
+
+            <div class="categoryBox">
+                <h:link outcome="category.xhtml">
+                    <span class="categoryLabelText">fruit &amp; veg</span>
+                </h:link>
+            </div>            
+        </div> 
+
     </h:body>
 </html>
 
