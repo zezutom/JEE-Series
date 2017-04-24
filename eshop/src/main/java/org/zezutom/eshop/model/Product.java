@@ -19,12 +19,10 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
-/**
- *
- * @author tom
- */
+@XmlRootElement
 @Entity
 @NamedQueries({
     @NamedQuery(name = "Product.findAll", query = "SELECT p FROM Product p")
@@ -57,10 +55,12 @@ public class Product implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date lastUpdated;
 
+    @XmlTransient
     @JoinColumn(name = "category_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Category categoryId;
     
+    @XmlTransient
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "product")
     private List<OrderedProduct> orderedProductList;
 

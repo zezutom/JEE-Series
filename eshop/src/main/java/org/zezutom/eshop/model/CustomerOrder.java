@@ -20,12 +20,10 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
-/**
- *
- * @author tom
- */
+@XmlRootElement
 @Entity
 @Table(name = "customer_order")
 @NamedQueries({
@@ -60,6 +58,7 @@ public class CustomerOrder implements Serializable {
     @ManyToOne(optional = false)
     private Customer customerId;
     
+    @XmlTransient
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "customerOrder")
     private List<OrderedProduct> orderedProductList;
 

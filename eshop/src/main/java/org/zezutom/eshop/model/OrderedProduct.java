@@ -9,11 +9,10 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
-/**
- *
- * @author tom
- */
+@XmlRootElement
 @Entity
 @Table(name = "ordered_product")
 @NamedQueries({
@@ -31,10 +30,12 @@ public class OrderedProduct implements Serializable {
     @NotNull
     private short quantity;
     
+    @XmlTransient
     @JoinColumn(name = "customer_order_id", referencedColumnName = "id", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private CustomerOrder customerOrder;
     
+    @XmlTransient
     @JoinColumn(name = "product_id", referencedColumnName = "id", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Product product;

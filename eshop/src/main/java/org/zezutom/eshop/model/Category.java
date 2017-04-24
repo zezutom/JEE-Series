@@ -12,12 +12,10 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
-/**
- *
- * @author tom
- */
+@XmlRootElement
 @Entity
 @NamedQueries({
     @NamedQuery(name = "Category.findAll", query = "SELECT c FROM Category c")
@@ -35,6 +33,7 @@ public class Category implements Serializable {
     @Size(min = 1, max = 45)
     private String name;
     
+    @XmlTransient
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "categoryId")
     private List<Product> productList;
 
