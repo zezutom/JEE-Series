@@ -11,13 +11,12 @@
         <div id="indexLeftColumnWrapper">
             <div id="indexLeftColumn" ng-include="'templates/menu.html'"></div>
             <div id="footer" ng-include="'templates/footer.html'"></div>
-        </div>
-        <div id="indexRightColumn" ng-controller="CategoryController">
-            <div class="categoryBox" ng-repeat="category in categories">
-                <a href="#">{{category.name}}</a>
-            </div>                
         </div>    
-        <script src="js/lib/angular.min.js" type="text/javascript"></script>        
-        <script src="js/app.js" type="text/javascript"></script>        
+        <div id="main">
+            <div ng-view></div>
+        </div>
+        <script src="js/lib/angular.min.js" type="text/javascript"></script>
+        <script src="js/lib/angular-route.min.js" type="text/javascript"></script>        
+        <script src="js/main.js" type="text/javascript"></script>        
     </body>
 </html>
