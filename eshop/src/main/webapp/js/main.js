@@ -13,7 +13,12 @@ eShop.config(function ($routeProvider) {
         });
 });
 
-eShop.controller('categoryController', function ($scope, $http) {
+eShop.controller('categoryController', function ($scope, $http, $location) {
+
+    $scope.location = $location;
+    $scope.$watch('location.search()', function() {
+        $scope.selectedId = +(($location.search()).id);
+    }, true);
 
     $scope.categories = [];
 
