@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -34,8 +35,9 @@ public class Category implements Serializable {
     private String name;
     
     @XmlTransient
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "categoryId")
-    private List<Product> productList;
+    @JoinColumn(name = "category_id", referencedColumnName = "id")
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Product> products;
 
     public Category() {
     }
@@ -66,12 +68,12 @@ public class Category implements Serializable {
     }
 
     @XmlTransient
-    public List<Product> getProductList() {
-        return productList;
+    public List<Product> getProducts() {
+        return products;
     }
 
-    public void setProductList(List<Product> productList) {
-        this.productList = productList;
+    public void setProducts(List<Product> products) {
+        this.products = products;
     }
 
     @Override

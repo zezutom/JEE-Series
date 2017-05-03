@@ -1,5 +1,6 @@
 package org.zezutom.eshop.service;
 
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -20,4 +21,9 @@ public class ProductFacade extends AbstractFacade<Product> {
         super(Product.class);
     }
 
+    public List<Product> findAll(int categoryId) {
+        return em.createNamedQuery("Product.findByCategoryId", Product.class)
+                .setParameter("categoryId", categoryId)
+                .getResultList();
+    }
 }

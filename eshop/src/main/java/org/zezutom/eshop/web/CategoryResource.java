@@ -19,7 +19,7 @@ public class CategoryResource {
     private CategoryFacade categoryFacade;
         
     @GET
-    public List<Category> list() {
+    public List<Category> findAll() {
         return categoryFacade.findAll();
     }
 

@@ -18,6 +18,9 @@ eShop.controller('categoryController', function ($scope, $http, $location) {
     $scope.location = $location;
     $scope.$watch('location.search()', function() {
         $scope.selectedId = +(($location.search()).id);
+        if ($scope.selectedId) {
+            $scope.loadProducts();    
+        }        
     }, true);
 
     $scope.categories = [];
@@ -30,6 +33,17 @@ eShop.controller('categoryController', function ($scope, $http, $location) {
             }
         });
     };
+    
+    $scope.loadProducts = function () {
+        $http.get('resources/products', {
+            params: {categoryId: $scope.selectedId}
+        }).then(function (response) {
+            var data = response.data;
+            if (data && data.length > 0) {
+                $scope.categories.push.apply($scope.categories, data);
+            }
+        });
+    };    
 
     // Load all categories
     $scope.loadAll();

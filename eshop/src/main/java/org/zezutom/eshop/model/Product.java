@@ -10,8 +10,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -26,6 +24,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @Entity
 @NamedQueries({
     @NamedQuery(name = "Product.findAll", query = "SELECT p FROM Product p")
+    , @NamedQuery(name = "Product.findByCategoryId", query = "SELECT p FROM Category c JOIN c.products p WHERE c.id = :categoryId")
     , @NamedQuery(name = "Product.findById", query = "SELECT p FROM Product p WHERE p.id = :id")
     , @NamedQuery(name = "Product.findByName", query = "SELECT p FROM Product p WHERE p.name = :name")
     , @NamedQuery(name = "Product.findByPrice", query = "SELECT p FROM Product p WHERE p.price = :price")
@@ -54,15 +53,10 @@ public class Product implements Serializable {
     @Column(name = "last_updated")
     @Temporal(TemporalType.TIMESTAMP)
     private Date lastUpdated;
-
-    @XmlTransient
-    @JoinColumn(name = "category_id", referencedColumnName = "id")
-    @ManyToOne(optional = false)
-    private Category categoryId;
     
     @XmlTransient
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "product")
-    private List<OrderedProduct> orderedProductList;
+    private List<OrderedProduct> orderedProducts;
 
     public Product() {
     }
@@ -117,22 +111,14 @@ public class Product implements Serializable {
     public void setLastUpdated(Date lastUpdated) {
         this.lastUpdated = lastUpdated;
     }
-
-    public Category getCategoryId() {
-        return categoryId;
-    }
-
-    public void setCategoryId(Category categoryId) {
-        this.categoryId = categoryId;
-    }
-
+    
     @XmlTransient
-    public List<OrderedProduct> getOrderedProductList() {
-        return orderedProductList;
+    public List<OrderedProduct> getOrderedProducts() {
+        return orderedProducts;
     }
 
-    public void setOrderedProductList(List<OrderedProduct> orderedProductList) {
-        this.orderedProductList = orderedProductList;
+    public void setOrderedProducts(List<OrderedProduct> orderedProducts) {
+        this.orderedProducts = orderedProducts;
     }
 
     @Override
